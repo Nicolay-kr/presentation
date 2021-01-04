@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<img class="picture" src="./assets/img/1200px-React-icon.svg.png" alt="">
+						<h3>React.js</h3>
+					</section>
+					
+				</section>
+
+				<section>
+					<section><h2 >What is React.js?</h2></section>
+					<section>
+						<ul>
+							<h3>What is React.js?</h3>
+							<li>React is a view layer library, not a framework like Vue, Angular etc.</li>
+							<li>Developed by Facebook</li>
+							<li>You can't use React to build a fully-functional web app</li>
+						</ul>
+					</section>
+					<section>
+						<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2431_RC04/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"React","geo":"","time":"today 5-y"},{"keyword":"Angular","geo":"","time":"today 5-y"},{"keyword":"Vue.js","geo":"","time":"today 5-y"}],"category":31,"property":""}, {"exploreQuery":"cat=31&date=today%205-y&q=React,Angular,Vue.js","guestPath":"https://trends.google.com:443/trends/embed/"}); </script> 
+					</section>
+				</section>
+
+				<section>
+					<section><h2>Why was React developed?</h2></section>
+					<section>
+						<ul>
+							<h3>Why was React developed?</h3>
+							<li>A lot of data on a page changing over time</li>
+							<li>Bad UX from using "cascading updates" of DOM tree</li>
+							<li>Complexity of two-way data binding</li>
+							<li>Shift from MVC mentality</li>
+							<li>Complexity of Facebook's UI architecture</li>
+						</ul>
+					</section>
+				</section>
+
+				
+				<section>
+					<section><h2>Who uses React?</h2></section>
+					<section>
+						<h3>React in the wild:</h3>
+						<div class="users">
+							<img class="users" src="./assets/img/users.png" alt="">
+						</div>
+					</section>
+				</section>
+
+				
+
+
+				
+				<section>
+					<h2>Fundamentals</h2>
+					<p>Most important terms in React</p>
+				</section>
+
+				
+
+				<section>
+					<section><h2>Component</h2></section>
+					<section>
+						<h3>Component</h3>
+						<p>
+							Components are self-contained reusable building blocks of web application.
+							They allow you to break your interface into independent parts that are 
+							easy to think about in isolation. They can be stacked together and used multiple times.
+						</p>
+					</section>
+					<section>
+						<p>
+							In many ways, components behave like regular JavaScript functions. 
+							They take arbitrary input (called "props") and return React elements 
+							that describe what we want to see on the screen.
+						</p>
+						<pre><code data-trim data-noescape data-line-numbers>
+							function Welcome(props) {
+								return &lth1&gt hello, {props.name}&lt/h1&gt;
+							  }
+							</code></pre>
+					</section>
+					<section>
+						<p>Components can also be defined as ES6 classes:</p>
+						<pre><code data-trim data-noescape data-line-numbers>
+							class Welcome extends React.Component {
+								render() {
+								  return &lth1&gtПривет, {this.props.name}&lt/h1&gt;
+								}
+							  }
+							</code></pre>
+						
+					</section>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>Props</h2></section>
+					<section>
+						<ul>
+							<h3>Props</h3>
+							<li>
+								Passed down to component from parent component and 
+								represents data for the component
+							</li>
+							<li> should be immutable or "pure"</li>
+							<li> All React component must act like pure functions with respect to their props</li>
+						</ul>
+						<pre><code data-trim data-noescape data-line-numbers>
+
+							function sum(a, b) {
+								return a + b;
+							  }
+
+
+							  function withdraw(account, amount) {
+								account.total -= amount;
+							  }
+							</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>State</h2></section>
+					<section>
+						<ul>
+							<h3>State</h3>
+							<li>Represents internal state of the component</li>
+							<li>
+								When a component's state data changes, the rendered 
+								markup will be updated by re-invoking render() method
+							</li>
+						</ul>
+						<pre><code data-trim data-noescape data-line-numbers>
+							render: function() {
+								return 
+								&lth3&gt
+								  Click count: 
+								  &ltspan className='label label-default'&gt
+									{this.state.clicks}
+								  &lt/span&gt
+								&lt/h3&gt;
+							}
+							</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>Virtual DOM</h2></section>
+					<section>
+						<ul>
+							<h3>Virtual DOM</h3>
+							<li>DOM manipulation is the heart of the modern, interactive web</li>
+							<li>Unfortunately, it is alot slower than most JavaScript operations</li>
+							<li>Slowness is made worse by the fact that most JavaScript frameworks update the</li>
+							<li>DOM much more than they have to</li>
+							<li>Example: updating a list</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul>
+							<h3>Virtual DOM</h3>
+							<li>
+								To address this inefficiency, React popularized the virtual DOM for efficient
+								re-rendering of the actual DOM
+							</li>
+							<li>The virtual DOM is a lightweight copy of the real DOM</li>
+							<li>Once the virtual DOM has updated, React compares the virtual DOM with a virtual DOM snapshot before the state change</li>
+							<li>It then compares which objects have been changed and only updates those objects on the real DOM</li>
+						</ul>
+					</section>
+
+					<section>
+						<pre><code data-trim data-noescape data-line-numbers>
+							render: function() {
+								return 
+								&lth3&gt
+								  Click count: 
+								  &ltspan className='label label-default'&gt
+									{this.state.clicks}
+								  &lt/span&gt
+								&lt/h3&gt;
+							}
+							</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>JSX</h2>
+						<pre><code data-trim data-noescape data-line-numbers>
+							const element = &lth1&gtHello, world&lt/h1&gt;
+						</code></pre>
+					</section>
+					<section>
+						<ul>
+							<h3>JSX</h3>
+							<li>Arguably, one of the coolest things in React</li>
+							<li>XML-like syntax for generating component's HTML</li>
+							<li>Easier to read and understand large DOM trees</li>
+							<li>Translates to plain JavaScript using <strong>react-tools</strong></li>
+							<pre><code data-trim data-noescape data-line-numbers>
+								function getGreeting(user) { if (user) {
+									return &lthl>&gtHello, {formatName(user)}!&lt/hl>&gt
+									}
+									return &lthl>&gtHello, Stranger.&lt/hl>&gt;
+									}
+									
+							</code></pre>
+						</ul>
+					</section>
+					<section class="jsx-code">
+						<pre><code data-trim data-noescape data-line-numbers>
+								/** @jsx React.DOM */
+
+								render: function () {
+									return &ltdiv&gt
+										&lth2&gt
+										  &ltstrong&gtExample 4:&lt/strong&gt  React App
+										&lt/h2&gt
+									&lt/div&gt;
+								}
+
+								/** regular DOM */
+
+								render: function () {
+									return React.DOM.div(null, 
+										React.DOM.h2(null, React.DOM.strong(null, "Example 4:"),"React App")
+									);
+								}
+							</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>React: advantages</h2></section>
+					<section>
+						<ul>
+							<h3>Easy to understand what a component will render</h3>
+							<li>Declarative code → predictable code</li>
+							<li>You don't really need to study JS in the view file in order to understand what the file does</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>Easy to mix HTML and JS</h3>
+							<li>You do it already with template libraries (e.g. Handlebars, Mustache, Underscore etc.)</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>Uses full power of JS</h3>
+							<li>Decoupling templates from logic does not rely on the templates’ primitive abstractions, but uses full power of JavaScript in displaying views</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>No complex two-way data flow</h3>
+							<li>Uses simple one-way reactive data flow</li>
+							<li>Uses less code</li>
+							<li>Easier to understand than two-way binding</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>React is fast!</h3>
+							<li>Real DOM is slow</li>
+							<li>JavaScript is fast</li>
+							<li>
+								Using virtual DOM objects 
+								enables fast batch updates to real DOM, with great 
+								productivity gains over frequent cascading updates of DOM tree
+							</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>React dev tools</h3>
+							<li>React Chrome extension makes debugging  so much easier</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>Server-side rendering</h3>
+							<li>React.renderToString() returns pure HTML</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>React: disadvantages</h2></section>
+					<section>
+						<ul>
+							<h3>React is nothing but the view</h3>
+							<li>No events</li>
+							<li>No XHR</li>
+							<li>No data / models</li>
+							<li>No promises / deferreds</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>Architectural annoyances</h3>
+							<li>Setting state on unmounted components</li>
+						</ul>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>Building JSX requires some extra work</h3>
+							<li>But most of the work is already done for you by <strong>react-tools</strong></li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<h3>No support for older browsers</h3>
+							<li>React won't work with IE8</li>
+							<li>There some polyfills / shims that help</li>
+						</ul>
+					</section>
+				</section>
+
+				
+				<section>
+					<section><h2>Why should I use React?</h2></section>
+					<section>
+						<ul>
+							<h3>Why should I use React?</h3>
+							<li>Easy to read and understand views</li>
+							<li>Concept of components is the future of web development</li>
+							<li>If your page uses a lot of fast updating data or real time data - React is the way to go</li>
+							<li>Once you and your team is over the React's learning curve, developing your app will become a lot faster</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section><h2>Is switching to React easy?</h2></section>
+					<section>
+						<h3>Is switching to React easy?</h3>
+						<p>
+							Understanding how it works will 
+							take time and will slow you down 
+							at first (but once you and your team get it,
+							things will start happening much faster)
+						</p>
+					</section>
+				</section>
+
+
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
